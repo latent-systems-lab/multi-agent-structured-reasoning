@@ -1,0 +1,48 @@
+﻿protocol: debate
+comm_pattern: hybrid
+universe: [AAPL, TSLA, NVDA, PG, JPM, SPY, EURUSD=X, USDJPY=X, ^XAU, CL=F, ZN=F]
+
+start: "2020-01-01"
+end: "2024-12-31"
+
+market_api:
+  provider: "alphavantage"
+  key_env: "ALPHAVANTAGE_API_KEY"
+  throttle_per_sec: 4.0
+
+costs:
+  tc_bps: 5
+  slippage_bps: 2
+  borrow_bps_annual: 30
+
+stress_scenarios:
+  market_down_5: -0.05
+  oil_spike_8: 0.08
+
+outdir: "runs/full_stack_2020_2024"
+
+llm_model: "gemini-2.5-flash-lite"
+llm_temperature: 0.7
+enable_tools: true
+optimize_cash: true
+
+seeds:
+  global: 7
+  chair_temp: 0.35
+  analyst_temp: 0.55
+
+toggles:
+  cot: true
+  structured_mode: "strict"
+  debate:
+    enabled: true
+    R_max: 4
+    epsilon_l2: 0.015
+  self_consistency:
+    enabled: true
+    M: 5
+  tom:
+    enabled: true
+    scope: "pairwise"
+    reveal_last_proposals: true
+    memory_k: 3

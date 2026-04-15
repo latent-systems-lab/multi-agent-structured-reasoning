@@ -1,0 +1,50 @@
+﻿protocol: judge_only
+roles: [scenario, risk, chair]
+comm_pattern: flat
+
+universe: [AAPL, TSLA, NVDA, PG, JPM, SPY, EURUSD=X, USDJPY=X, ^XAU, CL=F, ZN=F]
+start: "2020-01-01"
+end: "2024-12-31"
+
+market_api:
+  provider: "alphavantage"
+  key_env: "ALPHAVANTAGE_API_KEY"
+  throttle_per_sec: 4.0
+
+costs:
+  tc_bps: 5
+  slippage_bps: 2
+  borrow_bps_annual: 30
+
+stress_scenarios:
+  market_down_5: -0.05
+
+outdir: "runs/judge_only_2020_2024"
+
+llm_model: "gemini-2.5-flash-lite"
+optimize_cash: true
+enable_tools: true
+
+llm_temperature: 0.3
+
+seeds:
+  global: 7
+  chair_temp: 0.3
+  analyst_temp: 0.0
+memory:
+  episodic: false
+  k: 5
+  alpha_return: 1.0
+  alpha_risk: 1.0
+  alpha_tc: 1.0
+
+toggles:
+  cot: false
+  structured_mode: "strict"
+  debate:
+    enabled: false
+    R_max: 1
+    epsilon_l2: 0.01
+  self_consistency:
+    enabled: false
+    M: 1

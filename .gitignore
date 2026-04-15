@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.env
+.venv*
+runs/
+runs*
+.vscode/settings.json
+*.csv
+*.pdf
+*.png
+src/multi_agent_structured_reasoning.egg-info*

@@ -1,0 +1,47 @@
+[project]
+name = "multi-agent-structured-reasoning"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "langgraph",
+    "langchain-core",
+    "langchain-google-genai>=2.1.9",
+    "openai",
+    "google-generativeai",
+    "pydantic>=2",
+    "jinja2",
+    "numpy",
+    "yfinance",
+    "polars",
+    "pyarrow",
+    "duckdb",
+    "cvxpy",
+    "osqp",
+    "scipy",
+    "psutil",
+    "pyyaml",
+    "tenacity",
+    "structlog",
+    "matplotlib",
+    "tiktoken",
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 88
+
+[tool.ruff]
+line-length = 88
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+allow_subclassing_any = true
